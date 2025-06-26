@@ -39,9 +39,7 @@ void RandomN()
             std::cout << "You lose" << '\n';
             return;
         }
-    }
-
-    
+    }   
 }
 
 int main()
