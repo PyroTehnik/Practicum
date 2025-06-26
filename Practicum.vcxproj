@@ -24,6 +24,7 @@
     <ProjectGuid>{c2244209-f84d-4fae-999e-2f7609158d0a}</ProjectGuid>
     <RootNamespace>Practicum</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>PyroTehnik</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
