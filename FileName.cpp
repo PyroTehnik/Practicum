@@ -11,8 +11,21 @@ void Calc()
     std::cout << "A * B = " << a * b << '\n';
     std::cout << "A / B = " << a / b << '\n';
 }
+void AgeC()
+{
+    int a;
+    std::cout << "Enter age" << '\n';
+    std::cin >> a;
+    if (a>=18) {
+        std::cout << "Welcome";
+    }
+    else {
+        std::cout << "Access denide";
+    }
+
+}
 
 int main()
 {
-    Calc();
+    AgeC();
 }
