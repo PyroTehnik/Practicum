@@ -46,5 +46,5 @@ void RandomN()
 
 int main()
 {
-    ();
+    RandomN();
 }
