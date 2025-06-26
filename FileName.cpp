@@ -22,10 +22,29 @@ void AgeC()
     else {
         std::cout << "Access denide";
     }
+}
+void RandomN()
+{
+    srand(time(0));
+    for (int i = 0; i < 10; i++)
+    {
+        int a;
+        int b = rand() % (1 - 10 + 1);
+        std::cout << "Enter number " << "(" << b << ")" << '\n';
+        std::cin >> a;
+        if (a == b) {
+            std::cout << "You win" << '\n';
+        }
+        else {
+            std::cout << "You lose" << '\n';
+            return;
+        }
+    }
 
+    
 }
 
 int main()
 {
-    AgeC();
+    ();
 }
