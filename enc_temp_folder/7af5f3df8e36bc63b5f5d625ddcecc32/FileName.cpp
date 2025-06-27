@@ -56,8 +56,7 @@ void RPS()
             std::cout << "uw " << '\n';
         }
         else {
-            std::cout << "ul " << '\n';
-
+            std::cout << "ul " << '\n';;
         }
     }
 }
