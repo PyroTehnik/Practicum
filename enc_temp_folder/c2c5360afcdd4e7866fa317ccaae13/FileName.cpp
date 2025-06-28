@@ -92,7 +92,7 @@ void Store()
     std::string price[] = { "1$","2$","3$"};
     std::cout << product[1] << BananaQ << "on" << price[1] << "each" << '\n';
     std::cout << product[2] << AppleQ << "on" << price[2] << "each"  << '\n';
-    std::cout << product[3] << LemonQ << "on" << price[3] << "each" << '\n';
+        std::cout << product[3] << LemonQ << "on" << price[3] << "each" << '\n';
 
     //how much money does the user have
     std::cout << "How much money do you have?" << '\n';
