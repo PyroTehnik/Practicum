@@ -46,25 +46,47 @@ void RPS()
     srand(time(0));
     for (int i = 0; i < 3; i++)
     {
-        std::string a[] = { "rock","paper","scissors" };
-        int b = rand() % (0 - 2);
-        a[b] < a[b+1];
-        std::string c;
-        std::cout << "Choise weapon (rock,paper,scissors) " << "(" << a[b] << ")" << '\n';
-        std::cin >> c;
-              
-        if (c != a[b]) {
+        std::string weapon[] = {"rock","paper","scissors"};
+      
+
+        enum {draw,win,lose};
+        int result[3][3]{
+            {draw,win,lose},
+            {lose,draw,win},
+            {win,lose,draw}
+        };
+
+        std::string resultStr[3][3]{
+            {"draw","win","lose"},
+            {"lose","draw","win"},
+            {"win","lose","draw"}
+        };
+        
+        std::string userStr;
+        int user=-1;
+        int enemy = rand() % 2;
+        std::cout << "Choise weapon (rock,paper,scissors) " << "(" << weapon[enemy] << ")" << '\n';
+        std::cin >> userStr;
+
+        bool correct = false;
+        for (int i = 0; i < 3; i++)
+        {
+            if (userStr == weapon[i]) {
+                correct = true;               
+                user = i;
+            }
+        }
+
+        if (!correct) {
+
             std::cout << "Error. Choise correct weapon " << '\n';
         }
-        else {
-            if (c > a[b]) {
-                std::cout << "uw " << '\n';
-            }
-            else {
-                std::cout << "ul " << '\n';
-                return;
-            }
+        else
+        {
+            std::cout << resultStr[enemy][user] << '\n';
         }
+
+
     }       
 }
 
