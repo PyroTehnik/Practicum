@@ -80,8 +80,29 @@ void RPS()
         }
     }       
 }
+void Store()
+{   //list of product in store with price
+    std::cout << "Products that are currently in the store" << '\n'; 
+    std::string banana;
+    std::cout << "Banana x3 on 1$ each" << '\n';
+    std::cout << "Apple x2 on 2$ each"  << '\n';
+    std::cout << "Lemon x4 on 3$ each"  << '\n';
+
+    //how much money does the user have
+    std::cout << "How much money do you have?" << '\n';
+    int money;
+    std::cin >> money;
+
+    //the user enters the product he wants to buy
+    std::cout << "What u want buy?" << '\n';
+    std::string products_to_buy;
+    std::cin >> products_to_buy;
+
+    //calculating the price of all the products the user wants to buy & how much money is left
+
+}
 
 int main()
 {
-    RPS();
+    Store();
 }
