@@ -48,9 +48,11 @@ void RPS()
     srand(time(0));
     for (int i = 0; i < 3; i++)
     {
-        std::string weapon[] = {"rock","paper","scissors"}; //create array weapon
+        //create array weapon
+        std::string weapon[] = {"rock","paper","scissors"}; 
 
-        std::string result[3][3]{ // create results
+        // create results
+        std::string result[3][3]{ 
             {"draw","win","lose"},
             {"lose","draw","win"},
             {"win","lose","draw"}
@@ -62,8 +64,8 @@ void RPS()
         std::cout << "Choise weapon (rock,paper,scissors) " << "(" << weapon[enemy] << ")" << '\n';
         std::cin >> userStr;
 
-        bool correct = false; // selection check & assigment "user" value on which was confirmed choice
-        for (int i = 0; i < 3; i++)
+        // selection check & assigment "user" value on which was confirmed choice
+        bool correct = false; for (int i = 0; i < 3; i++)
         {
             if (userStr == weapon[i]) {
                 correct = true;               
@@ -71,28 +73,29 @@ void RPS()
             }
         }
 
-        if (!correct) { //if the selection check is not confirmed
-
+        //if the selection check is not confirmed
+        if (!correct) {
             std::cout << "Error. Choise correct weapon " << '\n';
         }
         else
         {
-
-            std::cout << result[enemy][user] << '\n'; //appeal to std::string resulStr to choose the result
+            //appeal to std::string result to choose the result
+            std::cout << result[enemy][user] << '\n'; 
         }
     }       
 }
 void Store()
 {   //list of product in store with price
-    std::cout << "Products that are currently in the store" << '\n'; 
+    std::cout << "Products that are currently in the store" << '\n';
     std::string product[] = {"Banana","Apple","Lemon"};
     int BananaQ = 3;
     int AppleQ = 2;
     int LemonQ = 1;
-    std::string price[] = { "1$","2$","3$"};
-    std::cout << product[1] << BananaQ << "on" << price[1] << "each" << '\n';
-    std::cout << product[2] << AppleQ << "on" << price[2] << "each"  << '\n';
-    std::cout << product[3] << LemonQ << "on" << price[3] << "each" << '\n';
+    int price[] = {1,2,3};
+    std::string priceD[] = { "1$","2$","3$" };
+    std::cout << product[0] << " " << BananaQ << " on " << priceD[0] << " each" << '\n';
+    std::cout << product[1] << " " << AppleQ << " on " << priceD[1] << " each" << '\n';
+    std::cout << product[2] << " " << LemonQ << " on " << priceD[2] << " each" << '\n';
 
     //how much money does the user have
     std::cout << "How much money do you have?" << '\n';
