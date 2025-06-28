@@ -46,17 +46,9 @@ void RPS()
     srand(time(0));
     for (int i = 0; i < 3; i++)
     {
-        std::string weapon[] = {"rock","paper","scissors"};
-      
+        std::string weapon[] = {"rock","paper","scissors"}; //create array weapon
 
-        enum {draw,win,lose};
-        int result[3][3]{
-            {draw,win,lose},
-            {lose,draw,win},
-            {win,lose,draw}
-        };
-
-        std::string resultStr[3][3]{
+        std::string resultStr[3][3]{ // create result
             {"draw","win","lose"},
             {"lose","draw","win"},
             {"win","lose","draw"}
@@ -68,7 +60,7 @@ void RPS()
         std::cout << "Choise weapon (rock,paper,scissors) " << "(" << weapon[enemy] << ")" << '\n';
         std::cin >> userStr;
 
-        bool correct = false;
+        bool correct = false; // selection check & assigment "user" value on which was confirmed choice
         for (int i = 0; i < 3; i++)
         {
             if (userStr == weapon[i]) {
@@ -77,16 +69,15 @@ void RPS()
             }
         }
 
-        if (!correct) {
+        if (!correct) { //if the selection check is not confirmed
 
             std::cout << "Error. Choise correct weapon " << '\n';
         }
         else
         {
-            std::cout << resultStr[enemy][user] << '\n';
+
+            std::cout << resultStr[enemy][user] << '\n'; //appeal to std::string resulStr to choose the result
         }
-
-
     }       
 }
 
