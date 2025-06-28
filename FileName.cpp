@@ -1,4 +1,5 @@
 #include <iostream>
+using  namespace std;
 
 //https://docs.google.com/document/d/12zQMTrmwqXlbEfedsrYkyymqYattGrjmOqQ_tgM3sKc/edit?tab=t.0#heading=h.x4u1bxtik54
 
@@ -84,28 +85,35 @@ void RPS()
         }
     }       
 }
+
 void Store()
 {   //list of product in store with price
-    std::cout << "Products that are currently in the store" << '\n';
-    std::string product[] = {"Banana","Apple","Lemon"};
+    cout << "Products that are currently in the store" << '\n';
+    string product[] = {"Banana","Apple","Lemon"};
     int BananaQ = 3;
     int AppleQ = 2;
     int LemonQ = 1;
     int price[] = {1,2,3};
-    std::string priceD[] = { "1$","2$","3$" };
-    std::cout << product[0] << " " << BananaQ << " on " << priceD[0] << " each" << '\n';
-    std::cout << product[1] << " " << AppleQ << " on " << priceD[1] << " each" << '\n';
-    std::cout << product[2] << " " << LemonQ << " on " << priceD[2] << " each" << '\n';
+    string priceD[] = { "1$","2$","3$" };
+    cout << product[0] << " " << BananaQ << " on " << priceD[0] << " each" << '\n';
+    cout << product[1] << " " << AppleQ << " on " << priceD[1] << " each" << '\n';
+    cout << product[2] << " " << LemonQ << " on " << priceD[2] << " each" << '\n';
 
     //how much money does the user have
-    std::cout << "How much money do you have?" << '\n';
+    cout << "How much money do you have?" << '\n';
     int money;
-    std::cin >> money;
+    cin >> money;
 
     //the user enters the product he wants to buy
-    std::cout << "What u want buy?" << '\n';
-    std::string products_to_buy;
-    std::cin >> products_to_buy;
+    cout << "What u want buy?" << '\n';
+    for (int i = 0; i < 2; i++)
+    {
+        cin >> product;
+        if (product[i]);
+    }
+    string Qproduct;
+    cout << "How much " << "(" << Qproduct << ")" << '\n';
+    cin >> quantity;
 
     //calculating the price of all the products the user wants to buy & how much money is left
 
