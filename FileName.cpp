@@ -48,7 +48,7 @@ void RPS()
     {
         std::string weapon[] = {"rock","paper","scissors"}; //create array weapon
 
-        std::string resultStr[3][3]{ // create result
+        std::string result[3][3]{ // create results
             {"draw","win","lose"},
             {"lose","draw","win"},
             {"win","lose","draw"}
@@ -76,7 +76,7 @@ void RPS()
         else
         {
 
-            std::cout << resultStr[enemy][user] << '\n'; //appeal to std::string resulStr to choose the result
+            std::cout << result[enemy][user] << '\n'; //appeal to std::string resulStr to choose the result
         }
     }       
 }
