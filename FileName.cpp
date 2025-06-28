@@ -46,20 +46,28 @@ void RPS()
     srand(time(0));
     for (int i = 0; i < 3; i++)
     {
-        
-        std::string a[] = { "rock","paper","scissors" };
-        int b = rand() % (1 - 6);
-        std::string c;
-        std::cout << "Enter weapon (rock,paper,scissors) " << "(" << a[b] << ")" << '\n';
-        std::cin >> b;
-        if (c==a[b]) {
-            std::cout << "uw " << '\n';
-        }
-        else {
-            std::cout << "ul " << '\n';
 
-        }
+        std::string a[] = { "rock","paper","scissors" };
+        int b = rand() % (0 - 2);
+        a[b] < a[b+1];
+        std::string c;
+        std::cout << "Choise weapon (rock,paper,scissors) " << "(" << a[b] << ")" << '\n';
+        std::cin >> c;
+
+       
+
+
+            if (c > a[b]) {
+                std::cout << "uw " << '\n';
+            }
+            else {
+                std::cout << "ul " << '\n';
+                return;
+            }
+        
     }
+
+        
 }
 
 int main()
