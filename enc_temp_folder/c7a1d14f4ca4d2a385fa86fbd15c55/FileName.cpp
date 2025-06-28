@@ -70,5 +70,5 @@ void RPS()
 
 int main()
 {
-    RPS();
+    RandomN();
 }
