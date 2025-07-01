@@ -86,6 +86,7 @@ void RPS()
     }       
 }
 
+/*
 void Store()
 {   //list of product in store with price
     cout << "Products that are currently in the store" << '\n';
@@ -116,8 +117,8 @@ void Store()
     cin >> quantity;
 
     //calculating the price of all the products the user wants to buy & how much money is left
-
 }
+*/
 
 int main()
 {
