@@ -66,7 +66,8 @@ void RPS()
         std::cin >> userStr;
 
         // selection check & assigment "user" value on which was confirmed choice
-        bool correct = false; for (int i = 0; i < 3; i++)
+        bool correct = false; 
+        for (int i = 0; i < 3; i++)
         {
             if (userStr == weapon[i]) {
                 correct = true;               
@@ -86,8 +87,58 @@ void RPS()
     }       
 }
 
-/*
+
 void Store()
+{
+    string product[] = {"banana","1","2"};
+    int p = 3;
+    int q = 3;
+
+    //how much money does the user have
+    cout << "How much money do you have?" << '\n';
+    int money;
+    cin >> money;
+
+    //the user enters the product he wants to buy
+    cout << "What u want buy?" << '\n';
+    string want;
+    cin >> want;
+    int I = -1;
+
+    bool correct = false;
+    for (int i = 0; i < 1; i++)
+    {
+        if (want == product[i]) {
+            bool correct = true;
+            I = i;
+        }
+        else {
+            cout << "There is no such product in the list";
+        }
+    }
+
+    cout << "Hom much u want take?" << '\n';
+    int t;
+    cin >> t;
+
+    {
+        if (t <= q) {
+            if (money >= t * p) {
+                cout << "U buy " << t << product[I] << "?";
+            }
+            else {
+                cout << "Insufficient funds";
+            }
+        }
+        else {
+            cout << "That much is not available";
+        }
+    }
+
+
+
+}
+/*
 {   //list of product in store with price
     cout << "Products that are currently in the store" << '\n';
     string product[] = { "Banana","Apple","Lemon" };
@@ -120,7 +171,8 @@ void Store()
 }
 */
 
+
 int main()
 {
-    RandomN();
+    Store();
 }
