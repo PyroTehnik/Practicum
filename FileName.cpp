@@ -89,11 +89,11 @@ void RPS()
 void Store()
 {   //list of product in store with price
     cout << "Products that are currently in the store" << '\n';
-    string product[] = {"Banana","Apple","Lemon"};
+    string product[] = { "Banana","Apple","Lemon" };
     int BananaQ = 3;
     int AppleQ = 2;
     int LemonQ = 1;
-    int price[] = {1,2,3};
+    int price[] = { 1,2,3 };
     string priceD[] = { "1$","2$","3$" };
     cout << product[0] << " " << BananaQ << " on " << priceD[0] << " each" << '\n';
     cout << product[1] << " " << AppleQ << " on " << priceD[1] << " each" << '\n';
@@ -121,5 +121,5 @@ void Store()
 
 int main()
 {
-    Store();
+    RandomN();
 }
