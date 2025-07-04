@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using  namespace std;
 
 //https://docs.google.com/document/d/12zQMTrmwqXlbEfedsrYkyymqYattGrjmOqQ_tgM3sKc/edit?tab=t.0#heading=h.x4u1bxtik54
@@ -98,7 +99,7 @@ void Store()
     };
 
     vector<product>shop;
-    shop.push_back({"banana",10,5});
+    shop.push_back({ "banana",10,9 });
     shop.push_back({ "apple",8,7 });
     shop.push_back({ "lemon",6,5 });
 
@@ -106,6 +107,23 @@ void Store()
     int money;
     cin >> money;
 
+    cout << "Shopping list for maximum spending money:" << '\n';
+    //for (int a = 0; a < 3; a++)
+    //{;
+    //cout << "Max: " << *max_element(begin(shop[a].price), end(shop[a].price)) << '\n';
+    //}
+    {
+        int maxwell = -1;
+        for (int a = 0; a < shop.size(); a++)
+        {
+            maxwell = max(shop[a].price, maxwell);
+        }
+        std::cout << "max price is: " << maxwell << std::endl;
+    }
+
+    cout << "Maximum quantity purchase list"<<'\n';
+
+    /*
     for (int i = 0; i < shop.size(); i++) {
         cout << i+1 << " " << shop[i].name << " price " << shop[i].price << " quantity " << shop[i].quantity<< '\n';
     }
@@ -160,53 +178,6 @@ void Store()
             return;
         }
     }
-
-    /*
-    int prod;
-    string want;
-    cout << "What u want buy?" << '\n';
-    cin >> want;
-    bool corr = false;
-    for (int i1 = 0; i1 < shop.size(); i1++){
-        if (want == shop[i1].name) {
-            corr = true;
-            prod = i1;
-        }
-    }
-    if (!corr) {
-        cout << "Wrong name"<<'\n';
-    }
-    
-    int take;
-    cout << "How much u want take" << '\n';
-    cin >> take;
-    corr = false;
-    for (int i2 = 0; i2 < shop.size(); i2++) {
-        if (take <= shop[prod].quantity) {
-            corr = true;
-        }
-    }
-    if (!corr){
-        cout << "Wrong quantity"<<'\n';
-    }
-
-    corr = false;
-    for (int i3 = 0; i3 < shop.size(); i3++) {
-        if (money >= shop[prod].price*take) {
-            corr = true;
-        }
-    }
-    if (!corr) {
-        cout << "Wrong money" << '\n';
-    }
-    money -= shop[prod].price * take;
-
-    cout << "U buy " << take << " things " << want << " for " << shop[prod].price * take << '\n';
-    cout << "Remaining money " << money << '\n';
-
-
-
-    shop[i]quantity -= t;
     */
 }
 
