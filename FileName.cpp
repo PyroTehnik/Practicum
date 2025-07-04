@@ -1,6 +1,4 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
 using  namespace std;
 
 //https://docs.google.com/document/d/12zQMTrmwqXlbEfedsrYkyymqYattGrjmOqQ_tgM3sKc/edit?tab=t.0#heading=h.x4u1bxtik54
@@ -21,7 +19,7 @@ void AgeC()
     int a;
     std::cout << "Enter age" << '\n';
     std::cin >> a;
-    if (a>=18) {
+    if (a >= 18) {
         std::cout << "Welcome";
     }
     else {
@@ -52,7 +50,7 @@ void RPS()
     for (int i = 0; i < 3; i++)
     {
         //create array weapon
-        std::string weapon[] = {"rock","paper","scissors"};
+        std::string weapon[] = {"rock","paper","scissors"}; 
 
         // create results
         std::string result[3][3]{
@@ -62,7 +60,7 @@ void RPS()
         };
 
         std::string userStr;
-        int user=-1;
+        int user = -1;
         int enemy = rand() % 2;
         std::cout << "Choise weapon (rock,paper,scissors) " << "(" << weapon[enemy] << ")" << '\n';
         std::cin >> userStr;
@@ -119,7 +117,7 @@ void Store()
             maxwell = max(shop[a].price, maxwell);
         }
         std::cout << "max price is: " << maxwell << std::endl;
-    }
+        }
 
     cout << "Maximum quantity purchase list" << '\n';*/
     
@@ -172,7 +170,7 @@ void Store()
         cin >> answer;
         if (answer == "y") {
             buyW += 1;
-        }
+}
         else {
             return;
         }
