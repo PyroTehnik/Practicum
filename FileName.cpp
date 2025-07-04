@@ -110,7 +110,7 @@ void Store()
     cout << "Shopping list for maximum spending money:" << '\n';
     //for (int a = 0; a < 3; a++)
     //{;
-    //cout << "Max: " << *max_element(begin(shop[a].price), end(shop[a].price)) << '\n';
+    //cout << "max: " << *max_element(begin(shop[a].price), end(shop[a].price)) << '\n';
     //}
     {
         int maxwell = -1;
