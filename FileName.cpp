@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using  namespace std;
 
 //https://docs.google.com/document/d/12zQMTrmwqXlbEfedsrYkyymqYattGrjmOqQ_tgM3sKc/edit?tab=t.0#heading=h.x4u1bxtik54
@@ -90,86 +91,112 @@ void RPS()
 
 void Store()
 {
-    string product[] = {"banana","1","2"};
-    int p = 3;
-    int q = 3;
+    struct product {
+        string name;
+        int price;
+        int quantity;
+    };
 
-    //how much money does the user have
+    vector<product>shop;
+    shop.push_back({"banana",10,5});
+    shop.push_back({ "apple",8,7 });
+    shop.push_back({ "lemon",6,5 });
+
     cout << "How much money do you have?" << '\n';
     int money;
     cin >> money;
 
-    //the user enters the product he wants to buy
-    cout << "What u want buy?" << '\n';
+    for (int i = 0; i < shop.size(); i++) {
+        cout << i+1 << " " << shop[i].name << " price " << shop[i].price << " quantity " << shop[i].quantity<< '\n';
+    }
+
+    int prod = 0;
     string want;
-    cin >> want;
-    int I = -1;
-
-    bool correct = false;
-    for (int i = 0; i < 1; i++)
-    {
-        if (want == product[i]) {
-            bool correct = true;
-            I = i;
-        }
-        else {
-            cout << "There is no such product in the list";
-        }
-    }
-
-    cout << "Hom much u want take?" << '\n';
-    int t;
-    cin >> t;
-
-    {
-        if (t <= q) {
-            if (money >= t * p) {
-                cout << "U buy " << t << product[I] << "?";
-            }
-            else {
-                cout << "Insufficient funds";
-            }
-        }
-        else {
-            cout << "That much is not available";
-        }
-    }
-
-
-
-}
-/*
-{   //list of product in store with price
-    cout << "Products that are currently in the store" << '\n';
-    string product[] = { "Banana","Apple","Lemon" };
-    int BananaQ = 3;
-    int AppleQ = 2;
-    int LemonQ = 1;
-    int price[] = { 1,2,3 };
-    string priceD[] = { "1$","2$","3$" };
-    cout << product[0] << " " << BananaQ << " on " << priceD[0] << " each" << '\n';
-    cout << product[1] << " " << AppleQ << " on " << priceD[1] << " each" << '\n';
-    cout << product[2] << " " << LemonQ << " on " << priceD[2] << " each" << '\n';
-
-    //how much money does the user have
-    cout << "How much money do you have?" << '\n';
-    int money;
-    cin >> money;
-
-    //the user enters the product he wants to buy
     cout << "What u want buy?" << '\n';
-    for (int i = 0; i < 2; i++)
-    {
-        cin >> product;
-        if (product[i]);
-    }
-    string Qproduct;
-    cout << "How much " << "(" << Qproduct << ")" << '\n';
-    cin >> quantity;
+    cin >> want;
+    int take;
+    cout << "How much u want take" << '\n';
+    cin >> take;
 
-    //calculating the price of all the products the user wants to buy & how much money is left
+    bool corr1 = false;
+    bool corr2 = false;
+    bool corr3 = false;
+    for (int i1 = 0; i1 < shop.size(); i1++) {
+        if (want == shop[i1].name) {
+            corr1 = true;
+            prod = i1;
+            cout << shop[i1].name;
+        }
+        if (take <= shop[prod].quantity) {
+            corr2 = true;
+        }
+        if (money >= shop[prod].price * take) {
+            corr3 = true;
+        }
+    }
+    if (!corr1) {
+        cout << "Wrong name" << '\n';
+    }
+    if (!corr2) {
+        cout << "Wrong quantity" << '\n';
+    }
+    if (!corr3) {
+        cout << "Wrong money" << '\n';
+    }
+    money -= shop[prod].price * take;
+
+    cout << "U buy " << take << " things " << want << " for " << shop[prod].price * take << '\n';
+    cout << "Remaining money " << money << '\n';
+
+    /*
+    int prod;
+    string want;
+    cout << "What u want buy?" << '\n';
+    cin >> want;
+    bool corr = false;
+    for (int i1 = 0; i1 < shop.size(); i1++){
+        if (want == shop[i1].name) {
+            corr = true;
+            prod = i1;
+        }
+    }
+    if (!corr) {
+        cout << "Wrong name"<<'\n';
+    }
+    
+    int take;
+    cout << "How much u want take" << '\n';
+    cin >> take;
+    corr = false;
+    for (int i2 = 0; i2 < shop.size(); i2++) {
+        if (take <= shop[prod].quantity) {
+            corr = true;
+        }
+    }
+    if (!corr){
+        cout << "Wrong quantity"<<'\n';
+    }
+
+    corr = false;
+    for (int i3 = 0; i3 < shop.size(); i3++) {
+        if (money >= shop[prod].price*take) {
+            corr = true;
+        }
+    }
+    if (!corr) {
+        cout << "Wrong money" << '\n';
+    }
+    money -= shop[prod].price * take;
+
+    cout << "U buy " << take << " things " << want << " for " << shop[prod].price * take << '\n';
+    cout << "Remaining money " << money << '\n';
+
+
+
+    shop[i]quantity -= t;
+    */
 }
-*/
+
 
 
 int main()
