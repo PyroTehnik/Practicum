@@ -44,7 +44,7 @@ void RandomN()
             std::cout << "You lose" << '\n';
             return;
         }
-    }
+    }   
 }
 void RPS()
 {
@@ -55,12 +55,12 @@ void RPS()
         std::string weapon[] = {"rock","paper","scissors"}; 
 
         // create results
-        std::string result[3][3]{
+        std::string result[3][3]{ 
             {"draw","win","lose"},
             {"lose","draw","win"},
             {"win","lose","draw"}
         };
-
+        
         std::string userStr;
         int user = -1;
         int enemy = rand() % 2;
@@ -68,11 +68,11 @@ void RPS()
         std::cin >> userStr;
 
         // selection check & assigment "user" value on which was confirmed choice
-        bool correct = false;
+        bool correct = false; 
         for (int i = 0; i < 3; i++)
         {
             if (userStr == weapon[i]) {
-                correct = true;
+                correct = true;               
                 user = i;
             }
         }
@@ -84,9 +84,9 @@ void RPS()
         else
         {
             //appeal to std::string result to choose the result
-            std::cout << result[enemy][user] << '\n';
+            std::cout << result[enemy][user] << '\n'; 
         }
-    }
+    }       
 }
 
 
@@ -107,11 +107,11 @@ void Store()
     int money;
     cin >> money;
 
-    /*cout << "Shopping list for maximum spending money:" << '\n';
-    for (int a = 0; a < 3; a++)
-    {;
-    cout << "max: " << *max_element(begin(shop[a].price), end(shop[a].price)) << '\n';
-    }
+    cout << "Shopping list for maximum spending money:" << '\n';
+    //for (int a = 0; a < 3; a++)
+    //{;
+    //cout << "max: " << *max_element(begin(shop[a].price), end(shop[a].price)) << '\n';
+    //}
     {
         int maxwell = -1;
         for (int a = 0; a < shop.size(); a++)
@@ -121,8 +121,9 @@ void Store()
         std::cout << "max price is: " << maxwell << std::endl;
         }
 
-    cout << "Maximum quantity purchase list" << '\n';*/
-    
+    cout << "Maximum quantity purchase list"<<'\n';
+
+    /*
     for (int i = 0; i < shop.size(); i++) {
         cout << i+1 << " " << shop[i].name << " price " << shop[i].price << " quantity " << shop[i].quantity<< '\n';
     }
@@ -177,7 +178,10 @@ void Store()
             return;
         }
     }
+    */
 }
+
+
 
 int main()
 {
