@@ -92,7 +92,56 @@ void RPS()
 
 void Store()
 {
-    
+    struct product {
+        string name;
+        int price;
+        int quantity;
+    };
+
+    vector<product>shop;
+    shop.push_back({ "banana",10,9 });
+    shop.push_back({ "apple",8,7 });
+    shop.push_back({ "lemon",6,5 });
+
+    cout << "How much money do you have?" << '\n';
+    int money;
+    cin >> money;
+
+    //MaxQP()
+        cout << "maximum quantity of products for youre money is:" << '\n';
+        int c = 0;
+        int minPrice = money;
+        for (int m = 0; money >= minPrice; m++) {
+            int i = 0;
+            int minBuy = 0;
+            minPrice = money;
+            --minPrice;
+            for (int i = 0; i < 3; i++) {
+                if (minPrice >= shop[i].price && shop[i].quantity != 0) {
+                    minPrice = shop[i].price;
+                    c = i;
+                }
+            }
+            if (shop[c].quantity != 0) {
+                for (; money >= minPrice && shop[c].quantity != 0;) {
+                    if (money >= minPrice) {
+                        money -= minPrice;
+                        shop[c].quantity -= 1;
+                        minBuy += 1;
+                    }
+                }
+            }
+            if (shop[c].quantity == 0) {
+                shop[c].price = 100; // Ё“ќ“  ќ—“џЋ№ ћЌ≈ ќЅќЎ≈Ћ—я ѕќЋќћјЌџћ ћј√ј«»Ќќћ √ƒ≈ ¬—≈ ÷≈ЌЌ» » = 100
+            }
+            if (minBuy != 0) {
+                cout << shop[c].name << " " << minBuy << '\n';
+            }
+            if (money < minPrice || minBuy == 0) {
+                cout << "remainder of youre money: " << money << '\n';
+                break;
+            }
+        }
 
     /*
     
@@ -112,19 +161,19 @@ void Store()
 
     cout << "Maximum quantity purchase list" << '\n';*/
     
-   /* for (int i = 0; i < shop.size(); i++) {
+    for (int i = 0; i < shop.size(); i++) {
         cout << i+1 << " " << shop[i].name << " price " << shop[i].price << " quantity " << shop[i].quantity<< '\n';
     }
 
     int prod = 0;
-    int buyW = 1;
+    int buyw = 1;
     string want;
 
-    for (int buy = 0; buy < buyW; buy++) {
-        cout << "What u want buy?" << '\n';
+    for (int buy = 0; buy < buyw; buy++) {
+        cout << "what u want buy?" << '\n';
         cin >> want;
         int take;
-        cout << "How much u want take" << '\n';
+        cout << "how much u want take" << '\n';
         cin >> take;
 
         bool corr1 = false;
@@ -143,98 +192,32 @@ void Store()
             }
         }
         if (!corr1) {
-            cout << "Wrong name" << '\n';
+            cout << "wrong name" << '\n';
         }
         if (!corr2) {
-            cout << "Wrong quantity" << '\n';
+            cout << "wrong quantity" << '\n';
         }
         if (!corr3) {
-            cout << "Wrong money" << '\n';
+            cout << "wrong money" << '\n';
         }
         money -= shop[prod].price * take;
 
-        cout << "U buy " << take << " things " << want << " for " << shop[prod].price * take << '\n';
-        cout << "Remaining money " << money << '\n';
+        cout << "u buy " << take << " things " << want << " for " << shop[prod].price * take << '\n';
+        cout << "remaining money " << money << '\n';
 
         string answer;
-        cout << "U want buy more? y/n" << '\n';
+        cout << "u want buy more? y/n" << '\n';
         cin >> answer;
         if (answer == "y") {
-            buyW += 1;
+            buyw += 1;
 }
         else {
             return;
         }
-    }*/
+    }
 }
 
 int main()
 {
-    struct product {
-        string name;
-        int price;
-        int quantity;
-    };
-
-    vector<product>shop;
-    shop.push_back({ "banana",10,9 });
-    shop.push_back({ "apple",8,7 });
-    shop.push_back({ "lemon",6,5 });
-
-    cout << "How much money do you have?" << '\n';
-    int money;
-    cin >> money;
-
-
-    int c = 0;
-    int minPrice = money;
-    cout << money << '\n';
-    cout << minPrice << '\n';
-    // DO цикл должен работать пока денег больше или равно чем самый дешевый продукт на складе в момент проверки услови€ цикла
-    // - но если его запустить сейчас так он будет бесконечно выдавать coutы потому что не может переключитьс€ на след дешевый продукт
-    for (int m = 0; money >= minPrice; m++) {
-
-        cout << shop[c].price << '\t' << shop[c].quantity << '\n';
-
-        //? почему после выкупа первой самой дешевой позиции он не ищет новую позицию?
-
-        // находим продукт с минимальной ценой
-        int i = 0;
-        minPrice = money;
-        --minPrice;
-        cout << shop[0].price << '\t' << shop[0].quantity << '\n';
-        cout << shop[1].price << '\t' << shop[1].quantity << '\n';
-        cout << shop[2].price << '\t' << shop[2].quantity << '\n';
-        for (int i = 0; i < 3; i++) {
-            cout << shop[i].price << '\t' << shop[i].quantity << '\n';
-            cout << minPrice << '\n';
-            if (minPrice >= shop[i].price && shop[i].quantity != 0) {
-                minPrice = shop[i].price;
-                c = i;
-            }
-        }
-        //? как вынести значение за пределы цикла не выдава€ его новой переменной?
-        cout << c << '\n';
-
-        // выкупаем его пока его не останетс€
-        if (shop[c].quantity != 0) {
-
-            cout << "min price is: " << minPrice << '\n';
-            cout << "price belongs: " << shop[c].name << '\n';
-
-            for (; money >= minPrice && shop[c].quantity != 0;) {
-                if (money >= minPrice) {
-                    money -= minPrice;
-                    shop[c].quantity -= 1;
-                    cout << "Money: " << money << '\n';
-                    cout << shop[c].name << " quantity: " << shop[c].quantity << '\n';
-                }
-            }
-        }
-        if (shop[c].quantity == 0) {
-            shop[c].price = 100;
-        }
-        cout << minPrice << '\n';
-        cout << money << '\n';
-    }
+    Store();
 }
