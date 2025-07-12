@@ -1,4 +1,4 @@
-#include <iostream>
+Ôªø#include <iostream>
 #include <vector>
 #include <algorithm>
 using  namespace std;
@@ -88,8 +88,6 @@ void RPS()
         }
     }
 }
-
-
 void Store()
 {
     struct product {
@@ -116,7 +114,7 @@ void Store()
             int minBuy = 0;
             minPrice = money;
             --minPrice;
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < shop.size(); i++) {
                 if (minPrice >= shop[i].price && shop[i].quantity != 0) {
                     minPrice = shop[i].price;
                     c = i;
@@ -132,7 +130,7 @@ void Store()
                 }
             }
             if (shop[c].quantity == 0) {
-                shop[c].price = 100; // ›“Œ“  Œ—“€À‹ ÃÕ≈ Œ¡Œÿ≈À—ﬂ œŒÀŒÃ¿Õ€Ã Ã¿√¿«»ÕŒÃ √ƒ≈ ¬—≈ ÷≈ÕÕ» » = 100
+                shop[c].price = 100; // –≠–¢–û–¢ –ö–û–°–¢–´–õ–¨ –ú–ù–ï –û–ë–û–®–ï–õ–°–Ø –ü–û–õ–û–ú–ê–ù–´–ú –ú–ê–ì–ê–ó–ò–ù–û–ú –ì–î–ï –í–°–ï –¶–ï–ù–ù–ò–ö–ò = 100
             }
             if (minBuy != 0) {
                 cout << shop[c].name << " " << minBuy << '\n';
@@ -216,8 +214,11 @@ void Store()
         }
     }
 }
+void RPG() {
+
+}
 
 int main()
 {
-    Store();
+    RPG();
 }
