@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <locale.h>
+#include <string>
 using  namespace std;
 
 //https://docs.google.com/document/d/12zQMTrmwqXlbEfedsrYkyymqYattGrjmOqQ_tgM3sKc/edit?tab=t.0#heading=h.x4u1bxtik54
@@ -255,7 +256,7 @@ int main()
         MadMax[5].door.push_back(3);
         MadMax[5].door.push_back(4);
         MadMax[5].door.push_back(6);
-    MadMax.push_back({ "Grang dune", ""});
+    MadMax.push_back({ "Grand dune", ""});
         MadMax[6].door.push_back(5);
         MadMax[6].door.push_back(7);
         MadMax[6].door.push_back(8);
@@ -267,19 +268,29 @@ int main()
     MadMax.push_back({ "MetalWars", ""});
         MadMax[9].door.push_back(6);
 
-    int character = 3; // стартовая локация персонажа
+    int character = 4; // стартовая локация персонажа
     string GoTo;
 
-    cout << "u in: " << MadMax[character].name << '\n';
-    cout << "u can go to: " << '\n';
-    for (int i = 0; i < MadMax[character].door.size() ;i++) {
-        auto destination = MadMax[character].door[i];
+    for(;;)
+    {
+        cout << "u in: " << MadMax[character].name << '\n';
+        cout << "u can go to: " << '\n';
+        for (int i = 0; i < MadMax[character].door.size(); i++) {
+            auto destination = MadMax[character].door[i];
             cout << MadMax[destination].name << '\n';
-    }
-    cout << "where u go?" << '\n';
-    cin >> GoTo;
-    for () {
+        }
+        cout << "where u go?" << '\n';
 
+        getline(cin, GoTo);
+        cout << '\n';
+        for (int i = 0; i < MadMax[character].door.size(); i++) {
+            auto doorNumber = i;
+            auto destinationLocationNumber = MadMax[character].door[doorNumber];
+
+            if (GoTo == MadMax[destinationLocationNumber].name) {
+                character = MadMax[character].door[i];
+            }
+        }
     }
 
     /*for (int i=0; i<10;i++)
