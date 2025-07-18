@@ -228,29 +228,37 @@ int main()
         vector<int> door;
     };
 
+    struct inventory {
+
+    };
+
+    struct NPS {
+
+    };
+
     vector<location>MadMax;
-    MadMax.push_back({ "Hangar king of deseret", "The chambers of the main man in the whole great desert"}); // локация 0 _ в которую записываются (name и description)
-        MadMax[0].door.push_back(1); // локация0 _ дверь (0) _ ведет в лок1
+    MadMax.push_back({ "Hangar king of deseret", "The chambers of the main man in the whole great desert"});
+        MadMax[0].door.push_back(1); 
     MadMax.push_back({ "Fortress",""});
-        MadMax[1].door.push_back(0); // локация1 _ дверь (0) _ ведет в лок0
-        MadMax[1].door.push_back(2); // локация1 _ дверь (1) _ ведет в лок2
-        MadMax[1].door.push_back(3); // локация1 _ дверь (2) _ ведет в лок3
-        MadMax[1].door.push_back(4); // локация1 _ дверь (3) _ ведет в лок4 и ТД
+        MadMax[1].door.push_back(0); 
+        MadMax[1].door.push_back(2); 
+        MadMax[1].door.push_back(3); 
+        MadMax[1].door.push_back(4); 
     MadMax.push_back({ "Gas station", ""});
-        MadMax[2].door.push_back(1); // в крепость
-        MadMax[2].door.push_back(3); // в бар
-        MadMax[2].door.push_back(4); // в рцех
-        MadMax[2].door.push_back(5); // на ворота
+        MadMax[2].door.push_back(1); 
+        MadMax[2].door.push_back(3); 
+        MadMax[2].door.push_back(4); 
+        MadMax[2].door.push_back(5); 
     MadMax.push_back({ "Bar", ""});
-        MadMax[3].door.push_back(1); // в крепость
-        MadMax[3].door.push_back(2); // на заправку
-        MadMax[3].door.push_back(4); // в рцех
+        MadMax[3].door.push_back(1);
+        MadMax[3].door.push_back(2);
+        MadMax[3].door.push_back(4); 
         MadMax[3].door.push_back(5);
     MadMax.push_back({ "Repair shop", ""});
-        MadMax[4].door.push_back(1); // в крепость
-        MadMax[4].door.push_back(2); // на заправку
-        MadMax[4].door.push_back(3); // в бар
-        MadMax[4].door.push_back(5); // на ворота
+        MadMax[4].door.push_back(1); 
+        MadMax[4].door.push_back(2); 
+        MadMax[4].door.push_back(3); 
+        MadMax[4].door.push_back(5); 
     MadMax.push_back({ "Main gate", ""});
         MadMax[5].door.push_back(2);
         MadMax[5].door.push_back(3);
@@ -268,10 +276,10 @@ int main()
     MadMax.push_back({ "MetalWars", ""});
         MadMax[9].door.push_back(6);
 
-    int character = 4; // стартовая локация персонажа
+    int character = 2; // стартовая локация персонажа
     string GoTo;
 
-    for(;;)
+    for(;;) // move
     {
         cout << "u in: " << MadMax[character].name << '\n';
         cout << "u can go to: " << '\n';
@@ -284,28 +292,17 @@ int main()
         getline(cin, GoTo);
         cout << '\n';
         for (int i = 0; i < MadMax[character].door.size(); i++) {
-            auto doorNumber = i;
-            auto destinationLocationNumber = MadMax[character].door[doorNumber];
+            
+            auto DoorNumber = i;
+            auto DestLocNum = MadMax[character].door[DoorNumber];
 
-            if (GoTo == MadMax[destinationLocationNumber].name) {
+            if (GoTo == MadMax[DestLocNum].name) {
                 character = MadMax[character].door[i];
+                break;
+            }
+            else if (i +1  == MadMax[character].door.size()) {
+                cout << "Error input location. Choose the right one." << '\n';
             }
         }
     }
-
-    /*for (int i=0; i<10;i++)
-    {
-        cout << "U here: " << MadMax[character].name << '\n' << MadMax[character].description << '\n' <<
-            "U can go to: " << MadMax[character-1].name<< " or " << MadMax[character+1].name << '\n';
-        cout << "go to "; cin >> GoTo;
-        for (int j = 0; j < 10; j++)
-        {
-            if (GoTo == MadMax[character+1].name || GoTo == MadMax[character-1].name) {
-                cout << "u come " << GoTo;
-            }
-        }
-
-    }*/
-
-
 }
