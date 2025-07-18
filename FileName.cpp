@@ -6,6 +6,7 @@
 using  namespace std;
 
 //https://docs.google.com/document/d/12zQMTrmwqXlbEfedsrYkyymqYattGrjmOqQ_tgM3sKc/edit?tab=t.0#heading=h.x4u1bxtik54
+    
 
 void Calc()
 {
@@ -219,119 +220,160 @@ void Store()
 
 void RPG();
 
-
 int main()
 {
-    setlocale(LC_ALL, "Russian");
-
     struct location {
         string name;
         string description;
         vector<int> door;
+        vector<string>inventory;
     };
 
+    vector<location>Rooms;
 
-    struct Player {
-        int health = 50;
-        int damage = 0;
-        int defense = 0;
-    };
+    Rooms.push_back({ "Exit"});
+    Rooms.push_back({ "Main hall"});
+    Rooms.push_back({ "Bathroom"});
+    Rooms.push_back({ "Bedroom"});
 
-    struct NPS {
-        int health;
-        int damage;
-        int defense;
-    };
+    Rooms[0].door.push_back(1);
+    Rooms[1].door.push_back(0);
+    Rooms[1].door.push_back(2);
+    Rooms[1].door.push_back(3);
+    Rooms[2].door.push_back(1);
+    Rooms[3].door.push_back(1);
 
-    vector<location>MadMax;
-    {
-        MadMax.push_back({ "Hangar king of deseret", "The chambers of the main man in the whole great desert" });
-        MadMax[0].door.push_back(1);
-        MadMax.push_back({ "Fortress","" });
-        MadMax[1].door.push_back(0);
-        MadMax[1].door.push_back(2);
-        MadMax[1].door.push_back(3);
-        MadMax[1].door.push_back(4);
-        MadMax.push_back({ "Gas station", "" });
-        MadMax[2].door.push_back(1);
-        MadMax[2].door.push_back(3);
-        MadMax[2].door.push_back(4);
-        MadMax[2].door.push_back(5);
-        MadMax.push_back({ "Bar", "" });
-        MadMax[3].door.push_back(1);
-        MadMax[3].door.push_back(2);
-        MadMax[3].door.push_back(4);
-        MadMax[3].door.push_back(5);
-        MadMax.push_back({ "Repair shop", "" });
-        MadMax[4].door.push_back(1);
-        MadMax[4].door.push_back(2);
-        MadMax[4].door.push_back(3);
-        MadMax[4].door.push_back(5);
-        MadMax.push_back({ "Main gate", "" });
-        MadMax[5].door.push_back(2);
-        MadMax[5].door.push_back(3);
-        MadMax[5].door.push_back(4);
-        MadMax[5].door.push_back(6);
-        MadMax.push_back({ "Grand dune", "" });
-        MadMax[6].door.push_back(5);
-        MadMax[6].door.push_back(7);
-        MadMax[6].door.push_back(8);
-        MadMax[6].door.push_back(9);
-        MadMax.push_back({ "Canibals", "" });
-        MadMax[7].door.push_back(6);
-        MadMax.push_back({ "DiselHeads", "" });
-        MadMax[8].door.push_back(6);
-        MadMax.push_back({ "MetalWars", "" });
-        MadMax[9].door.push_back(6);
+    int character = 0;
+    string GoTo;
 
-        int character = 2; // стартовая локация персонажа
-        string GoTo;
-
-        for (;;) // move
-        {
-            cout << "u in: " << MadMax[character].name << '\n';
-            cout << "What do?" << '\n' << "- Move" << '\n' << "- Inventory" << '\n' << "- Look around" << '\n' << "- U Stats" << '\n';
-            string ansver;
-            cin >> ansver;
-            cout << '\n';
-
-            if (ansver == "move" || "Move") {
-                cout << "u can go to: " << '\n';
-                for (int i = 0; i < MadMax[character].door.size(); i++) {
-                    auto destination = MadMax[character].door[i];
-                    cout << MadMax[destination].name << '\n';
-                }
-                cout << "where u go?" << '\n';
-
-                getline(cin, GoTo);
-                cin >> GoTo;
-                cout << '\n';
-                for (int i = 0; i < MadMax[character].door.size(); i++) {
-
-                    auto DoorNumber = i;
-                    auto DestLocNum = MadMax[character].door[DoorNumber];
-
-                    if (GoTo == MadMax[DestLocNum].name) {
-                        character = MadMax[character].door[i];
-                        break;
-                    }
-                    else if (i + 1 == MadMax[character].door.size()) {
-                        cout << "Error input location. Choose the right one." << '\n';
-                    }
-                }
-
-            }
-            if (ansver == "look around")
-            {
-            }
-            if (ansver == "inventory")
-            {
-            }
-            if (ansver == "stats")
-            {
-            }
-        }
+    cout << "u can go to: "<< '\n';
+    
+    for (int i = 0; i < Rooms[character].door[i]; i++) {
+        cout << Rooms[Rooms[character].door[i]].name;
     }
+        
 }
 
-//DO start interface in location
+//struct location {
+//    string name;
+//    string description;
+//    vector<int> door;
+//
+//};
+//
+//struct Player {
+//    int health = 50;
+//    int damage = 0;
+//    int defense = 0;
+//};
+//
+//struct NPS {
+//    int health;
+//    int damage;
+//    int defense;
+//};
+//vector<location>MadMax;
+//setlocale(LC_ALL, "Russian");
+//
+//{
+//    //MadMax.puhs_back 
+//    {
+//        MadMax.push_back({ "Hangar king of deseret", "The chambers of the main man in the whole great desert" });
+//        MadMax[0].door.push_back(1);
+//        MadMax.push_back({ "Fortress","" });
+//        MadMax[1].door.push_back(0);
+//        MadMax[1].door.push_back(2);
+//        MadMax[1].door.push_back(3);
+//        MadMax[1].door.push_back(4);
+//        MadMax.push_back({ "Gas station", "" });
+//        MadMax[2].door.push_back(1);
+//        MadMax[2].door.push_back(3);
+//        MadMax[2].door.push_back(4);
+//        MadMax[2].door.push_back(5);
+//        MadMax.push_back({ "Bar", "" });
+//        MadMax[3].door.push_back(1);
+//        MadMax[3].door.push_back(2);
+//        MadMax[3].door.push_back(4);
+//        MadMax[3].door.push_back(5);
+//        MadMax.push_back({ "Repair shop", "" });
+//        MadMax[4].door.push_back(1);
+//        MadMax[4].door.push_back(2);
+//        MadMax[4].door.push_back(3);
+//        MadMax[4].door.push_back(5);
+//        MadMax.push_back({ "Main gate", "" });
+//        MadMax[5].door.push_back(2);
+//        MadMax[5].door.push_back(3);
+//        MadMax[5].door.push_back(4);
+//        MadMax[5].door.push_back(6);
+//        MadMax.push_back({ "Grand dune", "" });
+//        MadMax[6].door.push_back(5);
+//        MadMax[6].door.push_back(7);
+//        MadMax[6].door.push_back(8);
+//        MadMax[6].door.push_back(9);
+//        MadMax.push_back({ "Canibals", "" });
+//        MadMax[7].door.push_back(6);
+//        MadMax.push_back({ "DiselHeads", "" });
+//        MadMax[8].door.push_back(6);
+//        MadMax.push_back({ "MetalWars", "" });
+//        MadMax[9].door.push_back(6);
+//    }
+//
+//    int character = 2; // стартовая локация персонажа
+//    string GoTo;
+//
+//    for (;;) // move
+//    {
+//        cout << "u in: " << MadMax[character].name << '\n';
+//        cout << "What do?" << '\n' << "- Move" << '\n' << "- Inventory" << '\n' << "- Look around" << '\n' << "- U Stats" << '\n';
+//        string ansver;
+//        cin >> ansver;
+//        cout << '\n';
+//
+//        if (ansver == "move" || ansver == "Move") {
+//
+//            cout << "u can go to: " << '\n';
+//
+//            for (int i = 0; i < MadMax[character].door.size(); i++) {
+//
+//                auto destination = MadMax[character].door[i];
+//                cout << MadMax[destination].name << '\n';
+//
+//            }
+//            cout << "where u go?" << '\n';
+//
+//            getline(cin, GoTo);
+//
+//            cin >> GoTo;
+//
+//            cout << '\n';
+//
+//            for (int i = 0; i < MadMax[character].door.size(); i++) {
+//
+//                auto DoorNumber = i;
+//                auto DestLocNum = MadMax[character].door[DoorNumber];
+//
+//                if (GoTo == MadMax[DestLocNum].name) {
+//
+//                    character = MadMax[character].door[i];
+//                    break;
+//
+//                }
+//                else if (i + 1 == MadMax[character].door.size()) {
+//
+//                    cout << "Error input location. Choose the right one." << '\n';
+//
+//                }
+//            }
+//
+//        }
+//        if (ansver == "look around")
+//        {
+//        }
+//        if (ansver == "inventory")
+//        {
+//        }
+//        if (ansver == "stats")
+//        {
+//        }
+//    }
+//}
