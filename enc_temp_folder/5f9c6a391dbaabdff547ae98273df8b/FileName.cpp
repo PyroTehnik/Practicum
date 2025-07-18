@@ -304,7 +304,6 @@ int main()
                 cout << "where u go?" << '\n';
 
                 getline(cin, GoTo);
-                cin >> GoTo;
                 cout << '\n';
                 for (int i = 0; i < MadMax[character].door.size(); i++) {
 
