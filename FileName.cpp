@@ -320,6 +320,7 @@ int main()
             cout << "What do?" << '\n' << "Take _" << '\n' << "Put" << '\n' << "-Back-" << '\n';
             string ansver21;
             string ansver22;
+            // DO 2. Синтаксический разбор строки getline вместо cin'ов
             cin >> ansver21;
             if (ansver21 == "Take") {
                 cin >> ansver22;
