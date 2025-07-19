@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <vector>
 #include <algorithm>
+#include <cctype>
 #include <locale.h>
 #include <string>
 using  namespace std;
@@ -228,9 +229,8 @@ int main()
         vector<int> door;
         vector<string>inventory;
     };
-
+        
     vector<location>Rooms;
-
     Rooms.push_back({ "Exit"});
     Rooms.push_back({ "Main hall"});
     Rooms.push_back({ "Bathroom"});
@@ -243,137 +243,112 @@ int main()
     Rooms[2].door.push_back(1);
     Rooms[3].door.push_back(1);
 
-    int character = 0;
-    string GoTo;
 
-    cout << "u can go to: "<< '\n';
+    struct item {
+        string name;
+        string description;
+
+    };
+
+    vector<item>Item;
+    Item.push_back({ "Sword" });
+    Item.push_back({ "Armor" });
+    Item.push_back({ "Health potion" });
+
+    Rooms[1].inventory.push_back(Item[0].name); //меч в холле
+    Rooms[1].inventory.push_back(Item[2].name); //хилл в холле
+    Rooms[2].inventory.push_back(Item[1].name); //броня в ванной
+    Rooms[3].inventory.push_back(Item[2].name); //хилл в спальне
+
+
+    struct player {
+        string inventory;
+    };
+    vector<player>Player;
     
-    for (int i = 0; i < Rooms[character].door[i]; i++) {
-        cout << Rooms[Rooms[character].door[i]].name;
-    }
-        
-}
 
-//struct location {
-//    string name;
-//    string description;
-//    vector<int> door;
-//
-//};
-//
-//struct Player {
-//    int health = 50;
-//    int damage = 0;
-//    int defense = 0;
-//};
-//
-//struct NPS {
-//    int health;
-//    int damage;
-//    int defense;
-//};
-//vector<location>MadMax;
-//setlocale(LC_ALL, "Russian");
-//
-//{
-//    //MadMax.puhs_back 
-//    {
-//        MadMax.push_back({ "Hangar king of deseret", "The chambers of the main man in the whole great desert" });
-//        MadMax[0].door.push_back(1);
-//        MadMax.push_back({ "Fortress","" });
-//        MadMax[1].door.push_back(0);
-//        MadMax[1].door.push_back(2);
-//        MadMax[1].door.push_back(3);
-//        MadMax[1].door.push_back(4);
-//        MadMax.push_back({ "Gas station", "" });
-//        MadMax[2].door.push_back(1);
-//        MadMax[2].door.push_back(3);
-//        MadMax[2].door.push_back(4);
-//        MadMax[2].door.push_back(5);
-//        MadMax.push_back({ "Bar", "" });
-//        MadMax[3].door.push_back(1);
-//        MadMax[3].door.push_back(2);
-//        MadMax[3].door.push_back(4);
-//        MadMax[3].door.push_back(5);
-//        MadMax.push_back({ "Repair shop", "" });
-//        MadMax[4].door.push_back(1);
-//        MadMax[4].door.push_back(2);
-//        MadMax[4].door.push_back(3);
-//        MadMax[4].door.push_back(5);
-//        MadMax.push_back({ "Main gate", "" });
-//        MadMax[5].door.push_back(2);
-//        MadMax[5].door.push_back(3);
-//        MadMax[5].door.push_back(4);
-//        MadMax[5].door.push_back(6);
-//        MadMax.push_back({ "Grand dune", "" });
-//        MadMax[6].door.push_back(5);
-//        MadMax[6].door.push_back(7);
-//        MadMax[6].door.push_back(8);
-//        MadMax[6].door.push_back(9);
-//        MadMax.push_back({ "Canibals", "" });
-//        MadMax[7].door.push_back(6);
-//        MadMax.push_back({ "DiselHeads", "" });
-//        MadMax[8].door.push_back(6);
-//        MadMax.push_back({ "MetalWars", "" });
-//        MadMax[9].door.push_back(6);
-//    }
-//
-//    int character = 2; // стартовая локация персонажа
-//    string GoTo;
-//
-//    for (;;) // move
-//    {
-//        cout << "u in: " << MadMax[character].name << '\n';
-//        cout << "What do?" << '\n' << "- Move" << '\n' << "- Inventory" << '\n' << "- Look around" << '\n' << "- U Stats" << '\n';
-//        string ansver;
-//        cin >> ansver;
-//        cout << '\n';
-//
-//        if (ansver == "move" || ansver == "Move") {
-//
-//            cout << "u can go to: " << '\n';
-//
-//            for (int i = 0; i < MadMax[character].door.size(); i++) {
-//
-//                auto destination = MadMax[character].door[i];
-//                cout << MadMax[destination].name << '\n';
-//
-//            }
-//            cout << "where u go?" << '\n';
-//
-//            getline(cin, GoTo);
-//
-//            cin >> GoTo;
-//
-//            cout << '\n';
-//
-//            for (int i = 0; i < MadMax[character].door.size(); i++) {
-//
-//                auto DoorNumber = i;
-//                auto DestLocNum = MadMax[character].door[DoorNumber];
-//
-//                if (GoTo == MadMax[DestLocNum].name) {
-//
-//                    character = MadMax[character].door[i];
-//                    break;
-//
-//                }
-//                else if (i + 1 == MadMax[character].door.size()) {
-//
-//                    cout << "Error input location. Choose the right one." << '\n';
-//
-//                }
-//            }
-//
-//        }
-//        if (ansver == "look around")
-//        {
-//        }
-//        if (ansver == "inventory")
-//        {
-//        }
-//        if (ansver == "stats")
-//        {
-//        }
-//    }
-//}
+    int character = 0;
+
+    for(;;) 
+        //DO 1. Вне завитсимости от регистра, должен преобразовывать к "Бммм ммм"
+    {
+        //стартовый интерфейс
+        cout << "u in: " << Rooms[character].name << '\n';
+        cout << "- Go" << '\n';
+        cout << "- Look around" << '\n';
+        cout << "- Check inventory" << '\n';
+        string ansver;
+        cout << "What do?" << '\n';
+        getline(cin, ansver);
+       
+        // перемещение
+        if (ansver == "Go") {
+            cout << "u can go to: " << '\n';
+
+            for (int i = 0; i < Rooms[character].door.size(); i++) {
+                cout << Rooms[Rooms[character].door[i]].name << '\n';
+            }
+            cout << "-Back-"<< '\n';
+
+            string GoTo;
+            getline(cin, GoTo);
+
+            for (int i = 0; i < Rooms[character].door.size(); i++) {
+
+                auto destLoc = Rooms[character].door[i];
+                auto roomName = Rooms[destLoc].name;
+
+                if (GoTo == roomName) {
+                    character = Rooms[character].door[i];
+                    break;
+                }
+                else if (GoTo == "Back") {
+                    break;
+                }
+                else if (i + 1 == Rooms[character].door.size()) {
+                    cout << "Error" << '\n';
+                }
+            }
+        }
+
+        //предметы в локации
+        if (ansver == "Look around") {
+            for (int i = 0; i < Rooms[character].inventory.size(); i++) {
+                cout << Rooms[character].inventory[i], '\n';
+                auto NumItem= i;
+            }
+            cout << "What do?" << '\n' << "Take _" << '\n' << "Put" << "-Back-";
+            string ansver21;
+            string ansver22;
+            int a = 0;
+            int b = 0;
+            getline(cin, ansver21);
+            if (ansver21 == "Take") {
+                cin >> ansver22;
+                for (int i = 0; i < Rooms[character].inventory.size(); i++) {
+                    if (Rooms[character].inventory[i] == ansver22) {
+                        Player[a].inventory.push_back(Item[i].name);
+                        cout << "u take" << Player[a].inventory.push_back(Item[i].name);
+                    }
+                }
+            }
+                if (ansver21 == "Put") {
+
+            }
+            else if (ansver21 == "Back") {
+            break;
+        }
+
+        }
+        //НПС в локации
+        if (ansver == "Look around") {
+
+        }
+
+        //инвентарь
+        if (ansver == "Check inventory") {
+
+        }
+        cout << '\n';
+    }
+}
