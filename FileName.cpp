@@ -314,21 +314,19 @@ int main()
         //предметы в локации
         if (ansver == "Look around") {
             for (int i = 0; i < Rooms[character].inventory.size(); i++) {
-                cout << Rooms[character].inventory[i], '\n';
+                cout << Rooms[character].inventory[i] << '\n';
                 auto NumItem= i;
             }
-            cout << "What do?" << '\n' << "Take _" << '\n' << "Put" << "-Back-";
+            cout << "What do?" << '\n' << "Take _" << '\n' << "Put" << '\n' << "-Back-" << '\n';
             string ansver21;
             string ansver22;
-            int a = 0;
-            int b = 0;
-            getline(cin, ansver21);
+            cin >> ansver21;
             if (ansver21 == "Take") {
                 cin >> ansver22;
                 for (int i = 0; i < Rooms[character].inventory.size(); i++) {
                     if (Rooms[character].inventory[i] == ansver22) {
-                        Player[a].inventory.push_back(Item[i].name);
-                        cout << "u take" << Player[a].inventory.push_back(Item[i].name);
+                        Player.push_back({ Item[i].name });
+                        cout << "u take " << Player[0].inventory;
                     }
                 }
             }
