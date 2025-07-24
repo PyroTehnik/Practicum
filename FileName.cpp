@@ -327,28 +327,45 @@ int main()
                 
                 //взять предмет с локации
 
-                getline (cin, ansver21);
-                cout << ansver21.length();
-                for (int i = 0; i < ansver21.length(); i++) {
-                    if (ansver21[i] == ' ') {
+                std::string ansver;
+                std::vector<std::string>word;
+                int a = 0;
 
+                std::getline(std::cin, ansver);
+                std::cout << ansver.length() << '\n';
+
+                for (int i = 0; i < ansver.length(); i++) {
+                    if (ansver[i] == ' ') {
+                        a = a + 1;
+                        continue;
+                    }
+                    else {
+                        if (a >= word.size()) word.push_back("");
+                        word[a].push_back({ ansver[i] });
                     }
                 }
-                if (ansver21 == "Take") {
-                    getline (cin, ansver2); //TODO 2. Синтаксический разбор строки getline вместо cin'ов
+                for (int i = 0; i < word.size(); i++)
+                {
+                    std::cout << word[i] << '\n';
+                    string ItemTake = word[2], word[3];
+                    cout << ItemTake;
+                
+                }
+                if (word[1] == "Take") {
+                    //getline (cin, ansver2); //TODO 2. + Синтаксический разбор строки getline вместо cin'ов
                     cout << ansver22;
                     for (int i = 0; i < Rooms[character].inventory.size(); i++) {
-                        if (Rooms[character].inventory[i] == ansver2) {
-                            Inv.push_back({ Rooms[character].inventory[i]}); //TODO 3. стереть взятый предмет из локации
+                        if (Rooms[character].inventory[i] == word[2]) {
+                            Inv.push_back({ Rooms[character].inventory[i]}); //TODO 3. + стереть взятый предмет из локации
                             cout << "u take " << Rooms[character].inventory[i];
                             Rooms[character].inventory.erase(Rooms[character].inventory.begin() + i);
                         }
                     }
                 }
-                if (ansver21 == "Put") {
+                if (word[1] == "Put") {
 
                 }
-                else if (ansver21 == "Back") {
+                else if (word[1] == "Back") {
                 }
                 
         }
