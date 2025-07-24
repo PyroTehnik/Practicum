@@ -264,10 +264,10 @@ int main()
     struct player {
         string inventory;
     };
-    vector<player>Player;
+    vector<player>Inv;
     
 
-    int character = 0;
+    int character = 0; // стартовая локация персонажа
 
     for(;;) 
         //DO 1. Вне завитсимости от регистра, должен преобразовывать к "Бммм ммм"
@@ -313,31 +313,44 @@ int main()
 
         //предметы в локации
         if (ansver == "Look around") {
-            for (int i = 0; i < Rooms[character].inventory.size(); i++) {
-                cout << Rooms[character].inventory[i] << '\n';
-                auto NumItem= i;
+            if (Rooms[character].inventory.empty()) {
+                cout << "Location is empty" << '\n';
             }
-            cout << "What do?" << '\n' << "Take _" << '\n' << "Put" << '\n' << "-Back-" << '\n';
-            string ansver21;
-            string ansver22;
-            // DO 2. Синтаксический разбор строки getline вместо cin'ов
-            cin >> ansver21;
-            if (ansver21 == "Take") {
-                cin >> ansver22;
                 for (int i = 0; i < Rooms[character].inventory.size(); i++) {
-                    if (Rooms[character].inventory[i] == ansver22) {
-                        Player.push_back({ Item[i].name });
-                        cout << "u take " << Player[0].inventory;
+                    cout << "- " << Rooms[character].inventory[i] << '\n';
+                    auto NumItem = i;
+                }
+                cout << "What do?" << '\n' << "Take _" << '\n' << "Put" << '\n' << "-Back-" << '\n';
+                string ansver21;
+                string ansver22;
+                string ansver23;
+                
+                //взять предмет с локации
+
+                getline (cin, ansver21);
+                cout << ansver21.length();
+                for (int i = 0; i < ansver21.length(); i++) {
+                    if (ansver21[i] == ' ') {
+
                     }
                 }
-            }
+                if (ansver21 == "Take") {
+                    getline (cin, ansver2); //TODO 2. Синтаксический разбор строки getline вместо cin'ов
+                    cout << ansver22;
+                    for (int i = 0; i < Rooms[character].inventory.size(); i++) {
+                        if (Rooms[character].inventory[i] == ansver2) {
+                            Inv.push_back({ Rooms[character].inventory[i]}); //TODO 3. стереть взятый предмет из локации
+                            cout << "u take " << Rooms[character].inventory[i];
+                            Rooms[character].inventory.erase(Rooms[character].inventory.begin() + i);
+                        }
+                    }
+                }
                 if (ansver21 == "Put") {
 
-            }
-            else if (ansver21 == "Back") {
-            break;
-        }
-
+                }
+                else if (ansver21 == "Back") {
+                }
+                
         }
         //НПС в локации
         if (ansver == "Look around") {
@@ -347,7 +360,26 @@ int main()
         //инвентарь
         if (ansver == "Check inventory") {
 
+            if (Inv.empty()) {
+                cout << "Inventory is empty" << '\n';
+            }
+            else {
+                cout << "U have:" << '\n';
+                for (int i = 0; i < Inv.size(); i++) {
+                    cout << Inv[i].inventory << '\n';
+                }
+            }
         }
+
+           /* }
+            for (int i = 0; i < Inv[PlIt].inventory.size(); i++) {
+                cout << Inv[i].inventory << '\n';
+                emp2 = i; 
+            }
+        }
+        if (emp2 == -1) {
+            cout << " ";
+        }*/
         cout << '\n';
     }
 }
