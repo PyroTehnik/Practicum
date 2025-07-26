@@ -13,23 +13,23 @@ void Calc()
 {
     int a = 10;
     int b = 7;
-    std::cout << "A = " << a << '\n';
-    std::cout << "B = " << b << '\n';
-    std::cout << "A + B = " << a + b << '\n';
-    std::cout << "A - B = " << a - b << '\n';
-    std::cout << "A * B = " << a * b << '\n';
-    std::cout << "A / B = " << a / b << '\n';
+    cout << "A = " << a << '\n';
+    cout << "B = " << b << '\n';
+    cout << "A + B = " << a + b << '\n';
+    cout << "A - B = " << a - b << '\n';
+    cout << "A * B = " << a * b << '\n';
+    cout << "A / B = " << a / b << '\n';
 }
 void AgeC()
 {
     int a;
-    std::cout << "Enter age" << '\n';
-    std::cin >> a;
+    cout << "Enter age" << '\n';
+    cin >> a;
     if (a >= 18) {
-        std::cout << "Welcome";
+        cout << "Welcome";
     }
     else {
-        std::cout << "Access denide";
+        cout << "Access denide";
     }
 }
 void RandomN()
@@ -39,13 +39,13 @@ void RandomN()
     {
         int a;
         int b = rand() % (10 + 1);
-        std::cout << "Enter number " << "(" << b << ")" << '\n';
-        std::cin >> a;
+        cout << "Enter number " << "(" << b << ")" << '\n';
+        cin >> a;
         if (a == b) {
-            std::cout << "You win" << '\n';
+            cout << "You win" << '\n';
         }
         else {
-            std::cout << "You lose" << '\n';
+            cout << "You lose" << '\n';
             return;
         }
     }
@@ -56,20 +56,20 @@ void RPS()
     for (int i = 0; i < 3; i++)
     {
         //create array weapon
-        std::string weapon[] = {"rock","paper","scissors"}; 
+        string weapon[] = {"rock","paper","scissors"}; 
 
         // create results
-        std::string result[3][3]{
+        string result[3][3]{
             {"draw","win","lose"},
             {"lose","draw","win"},
             {"win","lose","draw"}
         };
 
-        std::string userStr;
+        string userStr;
         int user = -1;
         int enemy = rand() % 2;
-        std::cout << "Choise weapon (rock,paper,scissors) " << "(" << weapon[enemy] << ")" << '\n';
-        std::cin >> userStr;
+        cout << "Choise weapon (rock,paper,scissors) " << "(" << weapon[enemy] << ")" << '\n';
+        cin >> userStr;
 
         // selection check & assigment "user" value on which was confirmed choice
         bool correct = false;
@@ -83,12 +83,12 @@ void RPS()
 
         //if the selection check is not confirmed
         if (!correct) {
-            std::cout << "Error. Choise correct weapon " << '\n';
+            cout << "Error. Choise correct weapon " << '\n';
         }
         else
         {
-            //appeal to std::string result to choose the result
-            std::cout << result[enemy][user] << '\n';
+            //appeal to string result to choose the result
+            cout << result[enemy][user] << '\n';
         }
     }
 }
@@ -158,7 +158,7 @@ void Store()
         {
             maxwell = max(shop[a].price, maxwell);
         }
-        std::cout << "max price is: " << maxwell << std::endl;
+        cout << "max price is: " << maxwell << endl;
         }
 
     cout << "Maximum quantity purchase list" << '\n';*/
@@ -229,13 +229,34 @@ int main()
         vector<int> door;
         vector<string>inventory;
     };
-        
-    vector<location>Rooms;
-    Rooms.push_back({ "Exit"});
-    Rooms.push_back({ "Main hall"});
-    Rooms.push_back({ "Bathroom"});
-    Rooms.push_back({ "Bedroom"});
 
+    struct item {
+        string name;
+        string description;
+    };
+
+    struct player {
+        string inventory;
+        int HP = 50;
+        int Armor = 0;
+        int Damage = 10;
+    };
+
+    //Массив названий локаций
+    vector<location>Rooms;
+    Rooms.push_back({ "Exit" });
+    Rooms.push_back({ "Main hall" });
+    Rooms.push_back({ "Bathroom" });
+    Rooms.push_back({ "Bedroom" });
+
+    vector<item>Item;
+    Item.push_back({ "Sword" });
+    Item.push_back({ "Armor" });
+    Item.push_back({ "Health potion" });
+
+    vector<player>Inv;
+
+    //Вектор дверей в локациях
     Rooms[0].door.push_back(1);
     Rooms[1].door.push_back(0);
     Rooms[1].door.push_back(2);
@@ -243,30 +264,12 @@ int main()
     Rooms[2].door.push_back(1);
     Rooms[3].door.push_back(1);
 
-
-    struct item {
-        string name;
-        string description;
-
-    };
-
-    vector<item>Item;
-    Item.push_back({ "Sword" });
-    Item.push_back({ "Armor" });
-    Item.push_back({ "Health potion" });
-
+    //Вектор предметов в локациях
     Rooms[1].inventory.push_back(Item[0].name); //меч в холле
     Rooms[1].inventory.push_back(Item[2].name); //хилл в холле
     Rooms[2].inventory.push_back(Item[1].name); //броня в ванной
     Rooms[3].inventory.push_back(Item[2].name); //хилл в спальне
-
-
-    struct player {
-        string inventory;
-    };
-    vector<player>Inv;
     
-
     int character = 0; // стартовая локация персонажа
 
     for(;;) 
@@ -321,18 +324,21 @@ int main()
                     auto NumItem = i;
                 }
                 cout << "What do?" << '\n' << "Take _" << '\n' << "Put" << '\n' << "-Back-" << '\n';
+                
+                /*
                 string ansver21;
                 string ansver22;
                 string ansver23;
-                
+                */
+
                 //взять предмет с локации
 
-                std::string ansver;
-                std::vector<std::string>word;
+                string ansver;
+                vector<string>word;
                 int a = 0;
 
-                std::getline(std::cin, ansver);
-                std::cout << ansver.length() << '\n';
+                getline(cin, ansver);
+                cout << ansver.length() << '\n';
 
                 for (int i = 0; i < ansver.length(); i++) {
                     if (ansver[i] == ' ') {
@@ -346,7 +352,7 @@ int main()
                 }
                 for (int i = 0; i < word.size(); i++)
                 {
-                    std::cout << word[i] << '\n';
+                    cout << word[i] << '\n';
                     string ItemTake = word[2], word[3];
                     cout << ItemTake;
                 
