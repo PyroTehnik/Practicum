@@ -229,12 +229,30 @@ int main()
         vector<int> door;
         vector<string>inventory;
     };
-        
+
+    struct item {
+        string name;
+        string description;
+    };
+
+    struct player {
+        string inventory;
+    };
+
+
     vector<location>Rooms;
     Rooms.push_back({ "Exit"});
     Rooms.push_back({ "Main hall"});
     Rooms.push_back({ "Bathroom"});
     Rooms.push_back({ "Bedroom"});
+
+    vector<item>Item;
+    Item.push_back({ "Sword" });
+    Item.push_back({ "Armor" });
+    Item.push_back({ "Health potion" });
+
+    vector<player>Inv;
+
 
     Rooms[0].door.push_back(1);
     Rooms[1].door.push_back(0);
@@ -243,30 +261,13 @@ int main()
     Rooms[2].door.push_back(1);
     Rooms[3].door.push_back(1);
 
-
-    struct item {
-        string name;
-        string description;
-
-    };
-
-    vector<item>Item;
-    Item.push_back({ "Sword" });
-    Item.push_back({ "Armor" });
-    Item.push_back({ "Health potion" });
-
     Rooms[1].inventory.push_back(Item[0].name); //меч в холле
     Rooms[1].inventory.push_back(Item[2].name); //хилл в холле
     Rooms[2].inventory.push_back(Item[1].name); //броня в ванной
     Rooms[3].inventory.push_back(Item[2].name); //хилл в спальне
 
 
-    struct player {
-        string inventory;
-    };
-    vector<player>Inv;
     
-
     int character = 0; // стартовая локация персонажа
 
     for(;;) 
