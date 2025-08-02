@@ -285,7 +285,7 @@ int main()
         cout << "What do?" << '\n';
         getline(cin, ansver);
        
-        // перемещение ГОТОВО
+        // перемещение
         if (ansver == "Go") {
             cout << "u can go to: " << '\n';
 
@@ -315,7 +315,7 @@ int main()
             }
         }
 
-        //предметы в локации В РАЗРАБОТКЕ
+        //предметы в локации
         if (ansver == "Look around") {
             if (Rooms[character].inventory.empty()) {
                 cout << "Location is empty" << '\n';
@@ -357,7 +357,7 @@ int main()
 
                 for (int i = 1; i < word.size(); i++)
                 {
-                    arg += word[i] + " "; //За место arg нужны классы предметов
+                    arg += word[i] + " ";
                 }
 
                 // отладка
@@ -366,7 +366,40 @@ int main()
                     cout << "Word " << i << ": " << word[i] << '\n';
                 }
                 cout << "command " << word[0] << '\n';
-                cout << "argument " << arg;;  //DOTO 4 Веронуться сюда когда разберешься с классами
+                cout << "argument " << arg;;
+
+
+                /*string ansver21;
+                string ansver22;
+                string ansver23;*/
+
+                //взять предмет с локации
+
+                /*string ansver;
+                vector<string>word;
+                int a = 0;*/
+
+                /*getline(cin, ansver);
+                cout << ansver.length() << '\n';*/
+
+                /*for (int i = 0; i < ansver.length(); i++) {
+                    if (ansver[i] == ' ') {
+                        a = a + 1;
+                        continue;
+                    }
+                    else {
+                        if (a >= word.size()) word.push_back("");
+                        word[a].push_back({ ansver[i] });
+                    }
+                }
+                for (int i = 0; i < word.size(); i++)
+                {
+                    cout << word[i] << '\n';
+                    string ItemTake = word[2], word[3];
+                    cout << ItemTake;
+                
+                }*/
+
 
                 if (word[0] == "Take") {
                     cout << arg;
@@ -385,13 +418,12 @@ int main()
                 }
                 
         }
-
-        //НПС в локации NULL
+        //НПС в локации
         if (ansver == "Look around") {
 
         }
 
-        //инвентарь ЗАМОРОЖЕНО
+        //инвентарь
         if (ansver == "Check inventory") {
 
             if (Inv.empty()) {
@@ -405,6 +437,15 @@ int main()
             }
         }
 
+           /* }
+            for (int i = 0; i < Inv[PlIt].inventory.size(); i++) {
+                cout << Inv[i].inventory << '\n';
+                emp2 = i; 
+            }
+        }
+        if (emp2 == -1) {
+            cout << " ";
+        }*/
         cout << '\n';
     }
 }
