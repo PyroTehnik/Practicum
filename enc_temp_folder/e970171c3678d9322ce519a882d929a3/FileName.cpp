@@ -29,7 +29,7 @@ int main()
     struct item {
         string name;
         string description;
-        vector<string> Class;
+        string Class;
     };
 
     struct player {
@@ -41,12 +41,11 @@ int main()
 
     //Массив названий локаций
     vector<location>Rooms;
-    Rooms.push_back({ "Exit","Out of bounds"});
+    Rooms.push_back({ "Exit" });
     Rooms.push_back({ "Main hall" });
     Rooms.push_back({ "Bathroom" });
     Rooms.push_back({ "Bedroom" });
 
-    //Массив названий предметов
     vector<item>Item;
     Item.push_back({ "Sword" });
     Item.push_back({ "Armor" });
@@ -160,12 +159,7 @@ int main()
 
                 for (int i = 1; i < word.size(); i++)
                 {
-                    arg += word[i] + " "; 
-                    //За место arg нужны классы предметов
-
-                    //решить 2 задачи
-                    //как преобразовать аргумент в вид "Бмм ммм ммм..."
-                    //И как удалить пробел вконце чтоб он не считался в результат
+                    arg += word[i] + " "; //За место arg нужны классы предметов
                 }
 
                 // отладка
