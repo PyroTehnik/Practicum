@@ -29,38 +29,27 @@ int main()
     struct item {
         string name;
         string description;
-        vector<string> Class;
     };
 
     struct player {
         string inventory;
-        int HP = 50;
-        int Armor = 0;
-        int Damage = 10;
     };
 
-    //Массив названий локаций
-    vector<location>Rooms;
-    Rooms.push_back({ "Exit","Out of bounds"});
-    Rooms.push_back({ "Main hall" });
-    Rooms.push_back({ "Bathroom" });
-    Rooms.push_back({ "Bedroom" });
 
-    //Массив названий предметов
+    vector<location>Rooms;
+    Rooms.push_back({ "Exit"});
+    Rooms.push_back({ "Main hall"});
+    Rooms.push_back({ "Bathroom"});
+    Rooms.push_back({ "Bedroom"});
+
     vector<item>Item;
     Item.push_back({ "Sword" });
     Item.push_back({ "Armor" });
     Item.push_back({ "Health potion" });
 
-    /*Item[0].Class.push_back(Class[0])
-
-    vector<string> Class;
-    Class.push_back("takeble");
-    Class.push_back("puteble");*/
-
     vector<player>Inv;
 
-    //Вектор дверей в локациях
+
     Rooms[0].door.push_back(1);
     Rooms[1].door.push_back(0);
     Rooms[1].door.push_back(2);
@@ -68,11 +57,12 @@ int main()
     Rooms[2].door.push_back(1);
     Rooms[3].door.push_back(1);
 
-    //Вектор предметов в локациях
     Rooms[1].inventory.push_back(Item[0].name); //меч в холле
     Rooms[1].inventory.push_back(Item[2].name); //хилл в холле
     Rooms[2].inventory.push_back(Item[1].name); //броня в ванной
     Rooms[3].inventory.push_back(Item[2].name); //хилл в спальне
+
+
     
     int character = 0; // стартовая локация персонажа
 
