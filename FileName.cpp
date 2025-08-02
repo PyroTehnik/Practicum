@@ -29,27 +29,38 @@ int main()
     struct item {
         string name;
         string description;
+        vector<string> Class;
     };
 
     struct player {
         string inventory;
+        int HP = 50;
+        int Armor = 0;
+        int Damage = 10;
     };
 
-
+    //Массив названий локаций
     vector<location>Rooms;
-    Rooms.push_back({ "Exit"});
-    Rooms.push_back({ "Main hall"});
-    Rooms.push_back({ "Bathroom"});
-    Rooms.push_back({ "Bedroom"});
+    Rooms.push_back({ "Exit","Out of bounds" });
+    Rooms.push_back({ "Main hall" });
+    Rooms.push_back({ "Bathroom" });
+    Rooms.push_back({ "Bedroom" });
 
+    //Массив названий предметов
     vector<item>Item;
     Item.push_back({ "Sword" });
     Item.push_back({ "Armor" });
     Item.push_back({ "Health potion" });
 
+    /*Item[0].Class.push_back(Class[0])
+
+    vector<string> Class;
+    Class.push_back("takeble");
+    Class.push_back("puteble");*/
+
     vector<player>Inv;
 
-
+    //Вектор дверей в локациях
     Rooms[0].door.push_back(1);
     Rooms[1].door.push_back(0);
     Rooms[1].door.push_back(2);
@@ -57,16 +68,15 @@ int main()
     Rooms[2].door.push_back(1);
     Rooms[3].door.push_back(1);
 
+    //Вектор предметов в локациях
     Rooms[1].inventory.push_back(Item[0].name); //меч в холле
     Rooms[1].inventory.push_back(Item[2].name); //хилл в холле
     Rooms[2].inventory.push_back(Item[1].name); //броня в ванной
     Rooms[3].inventory.push_back(Item[2].name); //хилл в спальне
 
-
-    
     int character = 0; // стартовая локация персонажа
 
-    for(;;) 
+    for (;;)
     {
         //стартовый интерфейс
         cout << "u in: " << Rooms[character].name << '\n';
@@ -75,9 +85,9 @@ int main()
         cout << "- Check inventory" << '\n';
         string ansver;
         cout << "What do?" << '\n';
-        
-        input2 (ansver);
-       
+
+        input2(ansver);
+
         // перемещение ГОТОВО
         if (ansver == "Go") {
             cout << "u can go to: " << '\n';
@@ -85,7 +95,7 @@ int main()
             for (int i = 0; i < Rooms[character].door.size(); i++) {
                 cout << Rooms[Rooms[character].door[i]].name << '\n';
             }
-            cout << "-Back-"<< '\n';
+            cout << "-Back-" << '\n';
 
             string GoTo;
             input2(GoTo);
@@ -113,75 +123,75 @@ int main()
             if (Rooms[character].inventory.empty()) {
                 cout << "Location is empty" << '\n';
             }
-                for (int i = 0; i < Rooms[character].inventory.size(); i++) {
-                    cout << "- " << Rooms[character].inventory[i] << '\n';
-                    auto NumItem = i;
-                }
-                cout << "What do?" << '\n' << "Take _" << '\n' << "Put" << '\n' << "-Back-" << '\n';
-                
-                // getline команда и "сложный" аргумент для take/put
-                string ansver;
-                vector<string>word;
-                string arg;
-                int counterW = 0;
+            for (int i = 0; i < Rooms[character].inventory.size(); i++) {
+                cout << "- " << Rooms[character].inventory[i] << '\n';
+                auto NumItem = i;
+            }
+            cout << "What do?" << '\n' << "Take _" << '\n' << "Put" << '\n' << "-Back-" << '\n';
 
-                input2(ansver);
-                cout << "ansver.length: " << ansver.length() << '\n';
+            // getline команда и "сложный" аргумент для take/put
+            string ansver;
+            vector<string>word;
+            string arg;
+            int counterW = 0;
+
+            input2(ansver);
+            cout << "ansver.length: " << ansver.length() << '\n';
 
 
-                for (int i = 0; i < ansver.length(); i++) {
-
-                    // отладка
-                    cout << "i " << i << '\n';
-                    cout << "counterW " << counterW << '\n';
-                    cout << "word.size " << word.size() << '\n';
-
-                    if (ansver[i] != ' ')
-                    {
-                        for (; isalnum(ansver[i]); i++)
-                        {
-                            if (counterW >= word.size())
-                                word.push_back("");
-                            word[counterW].push_back({ ansver[i] });
-                        }
-                        counterW++;
-                    }
-                }
-
-                for (int i = 1; i < word.size(); i++)
-                {
-                    arg += word[i] + " "; 
-                    //За место arg нужны классы предметов
-
-                    //решить 2 задачи
-                    //как преобразовать аргумент в вид "Бмм ммм ммм..."
-                    //И как удалить пробел вконце чтоб он не считался в результат
-                }
+            for (int i = 0; i < ansver.length(); i++) {
 
                 // отладка
-                for (int i = 0; i < word.size(); i++)
-                {
-                    cout << "Word " << i << ": " << word[i] << '\n';
-                }
-                cout << "command " << word[0] << '\n';
-                cout << "argument " << arg;;  //DOTO 4 Вернуться сюда когда разберешься с классами
+                cout << "i " << i << '\n';
+                cout << "counterW " << counterW << '\n';
+                cout << "word.size " << word.size() << '\n';
 
-                if (word[0] == "Take") {
-                    //cout << arg;
-                    for (int i = 0; i < Rooms[character].inventory.size(); i++) {
-                        if (Rooms[character].inventory[i] == arg) {
-                            Inv.push_back({ Rooms[character].inventory[i]});
-                            cout << "u take " << Rooms[character].inventory[i];
-                            Rooms[character].inventory.erase(Rooms[character].inventory.begin() + i);
-                        }
+                if (ansver[i] != ' ')
+                {
+                    for (; isalnum(ansver[i]); i++)
+                    {
+                        if (counterW >= word.size())
+                            word.push_back("");
+                        word[counterW].push_back({ ansver[i] });
+                    }
+                    counterW++;
+                }
+            }
+
+            for (int i = 1; i < word.size(); i++)
+            {
+                arg += word[i] + " ";
+                //За место arg нужны классы предметов
+
+                //решить 2 задачи
+                //как преобразовать аргумент в вид "Бмм ммм ммм..."
+                //И как удалить пробел вконце чтоб он не считался в результат
+            }
+
+            // отладка
+            for (int i = 0; i < word.size(); i++)
+            {
+                cout << "Word " << i << ": " << word[i] << '\n';
+            }
+            cout << "command " << word[0] << '\n';
+            cout << "argument " << arg;;  //DOTO 4 Вернуться сюда когда разберешься с классами
+
+            if (word[0] == "Take") {
+                //cout << arg;
+                for (int i = 0; i < Rooms[character].inventory.size(); i++) {
+                    if (Rooms[character].inventory[i] == arg) {
+                        Inv.push_back({ Rooms[character].inventory[i] });
+                        cout << "u take " << Rooms[character].inventory[i];
+                        Rooms[character].inventory.erase(Rooms[character].inventory.begin() + i);
                     }
                 }
-                if (word[1] == "Put") {
+            }
+            if (word[1] == "Put") {
 
-                }
-                else if (word[1] == "Back") {
-                }
-                
+            }
+            else if (word[1] == "Back") {
+            }
+
         }
 
         //НПС в локации NULL
