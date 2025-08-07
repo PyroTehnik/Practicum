@@ -134,8 +134,12 @@ int main()
             string arg;
             int counterW = 0;
 
+            for (int i = 0; i < Inv.size(); i++) {
+                cout << Inv[i].inventory << '\n';
+            }
+
             input2(ansver);
-            cout << "ansver.length: " << ansver.length() << '\n';
+            //cout << "ansver.length: " << ansver.length() << '\n';
 
 
             for (int i = 0; i < ansver.length(); i++) {
@@ -166,6 +170,8 @@ int main()
                 //Получилось сделать без добавления классов, но все же тема интересная стоит придумать куда заюзать
             }
 
+            
+
             // отладка
             for (int i = 0; i < word.size(); i++)
             {
@@ -185,11 +191,20 @@ int main()
                     }
                 }
             }
-            if (word[1] == "Put") {
+            if (word[0] == "Put") {
+                for (int i = 0; i < Inv.size(); i++) {
+                    if (Inv[i].inventory == arg) {
+                        Rooms[character].inventory.push_back({ Inv[i].inventory });
+                        cout << "u put " << Inv[i].inventory << '\n';
+                        Inv[i].inventory.erase();
+                    }
+                }
+            }
 
+            else if (word[0] == "Back") {
+                break;
             }
-            else if (word[1] == "Back") {
-            }
+            
 
         }
 
