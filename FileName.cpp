@@ -18,7 +18,6 @@ void input2(string& a)
 int main()
 {
 
-
     struct location {
         string name;
         string description;
