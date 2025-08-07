@@ -10,7 +10,7 @@ using  namespace std;
 
 void input2(string& a)
 {
-     getline(cin, a);
+    getline(cin, a);
     transform(a.begin(), a.end(), a.begin(), tolower);
     transform(a.begin(), a.begin() + 1, a.begin(), toupper);
 }
@@ -49,7 +49,7 @@ int main()
     vector<item>Item;
     Item.push_back({ "Sword" });
     Item.push_back({ "Armor" });
-    Item.push_back({ "Health potion" });
+    Item.push_back({ "Heal potion" });
 
     /*Item[0].Class.push_back(Class[0])
 
@@ -58,6 +58,9 @@ int main()
     Class.push_back("puteble");*/
 
     vector<player>Inv;
+    Inv.push_back({ "Sword" });
+    Inv.push_back({ "Heal potion" });
+    //Inv.push_back({ Item[0] }); почему нельза запушить через вектор
 
     //Вектор дверей в локациях
     Rooms[0].door.push_back(1);
@@ -68,13 +71,13 @@ int main()
     Rooms[3].door.push_back(1);
 
     //Вектор предметов в локациях
-    Rooms[1].inventory.push_back(Item[0].name); //меч в холле
-    Rooms[1].inventory.push_back(Item[2].name); //хилл в холле
-    Rooms[2].inventory.push_back(Item[1].name); //броня в ванной
-    Rooms[3].inventory.push_back(Item[2].name); //хилл в спальне
+    //Rooms[1].inventory.push_back(Item[0].name); //меч в холле
+    //Rooms[1].inventory.push_back(Item[2].name); //хилл в холле
+    //Rooms[2].inventory.push_back(Item[1].name); //броня в ванной
+    //Rooms[3].inventory.push_back(Item[2].name); //хилл в спальне
 
     
-    int character = 1; // стартовая локация персонажа | ОТЛАДКА int = 0 -------------------------------------------------------------------------------
+    int character = 1; // стартовая локация персонажа
 
     for (;;)
     {
@@ -86,8 +89,8 @@ int main()
         string ansver;
         cout << "What do?" << '\n';
 
-        //input2(ansver); | ОТЛАДКА вынести из комента ------------------------------------------------------------
-        ansver = "Look around"; // | ОТЛАДКА удалить строку------------------------------------------------------------
+        //input2(ansver);
+        ansver = "Look around";
 
         // перемещение ГОТОВО
         if (ansver == "Go") {
@@ -119,7 +122,7 @@ int main()
             }
         }
 
-        //предметы в локации В РАЗРАБОТКЕ
+        //предметы в локации 1/2 done
         if (ansver == "Look around") {
             if (Rooms[character].inventory.empty()) {
                 cout << "Location is empty" << '\n';
@@ -128,7 +131,7 @@ int main()
                 cout << "- " << Rooms[character].inventory[i] << '\n';
                 auto NumItem = i;
             }
-            cout << "What do?" << '\n' << "Take _" << '\n' << "Put" << '\n' << "-Back-" << '\n';
+            cout << "What do?" << '\n' << "Take _" << '\n' << "Put _" << '\n' << "-Back-" << '\n';
 
             // getline команда и "сложный" аргумент для take/put
             string ansver;
@@ -143,9 +146,9 @@ int main()
             for (int i = 0; i < ansver.length(); i++) {
 
                 // отладка
-                cout << "i " << i << '\n';
-                cout << "counterW " << counterW << '\n';
-                cout << "word.size " << word.size() << '\n';
+                //cout << "i " << i << '\n';
+                //cout << "counterW " << counterW << '\n';
+                //cout << "word.size " << word.size() << '\n';
 
                 if (ansver[i] != ' ')
                 {
@@ -162,23 +165,22 @@ int main()
             for (int i = 1; i < word.size(); i++)
             {
                 arg += word[i];
-                if (i < word.size() - 1) { //КОСТЫЛЬ
+                if (i < word.size() - 1) { //КОСТЫЛЬ Получилось сделать без добавления классов, но все же тема интересная стоит придумать куда заюзать
                     arg += ' ';
                 }
-                //Получилось сделать без добавления классов, но все же тема интересная стоит придумать куда заюзать
             }
+            transform(arg.begin(), arg.begin() + 1, arg.begin(), toupper); // КОСТЫЛЬ? преобразование аргумента к виду "Бм м"
 
             // отладка
-            for (int i = 0; i < word.size(); i++)
+           /* for (int i = 0; i < word.size(); i++)
             {
                 cout << "Word " << i << ": " << word[i] << '\n';
             }
             cout << "command " << word[0] << '\n';
-            transform(arg.begin(), arg.begin() + 1, arg.begin(), toupper); // КОСТЫЛЬ? преобразование аргумента к виду "Бм м"
-            cout << "argument " << arg << '\n';  //DOTO 4 Вернуться сюда когда разберешься с классами
+            cout << "argument " << arg << '\n';
+            *///DOTO 4 Вернуться сюда когда разберешься с классами
 
             if (word[0] == "Take") {
-                //cout << arg;
                 for (int i = 0; i < Rooms[character].inventory.size(); i++) {
                     if (Rooms[character].inventory[i] == arg) {
                         Inv.push_back({ Rooms[character].inventory[i] });
@@ -188,8 +190,17 @@ int main()
                 }
             }
             if (word[1] == "Put") {
-
+                for (int i = 0; i < Inv.size(); i++){
+                    cout << Inv[i] << '\n';
+                }
+               /* for (int i = 0; i < Inv.size(); i++) {
+                    if (Inv[i] == arg) {
+                        Inv.push_back({ Rooms[character].inventory[i] });
+                        cout << "u put " << Rooms[character].inventory[i];
+                        Rooms[character].inventory.erase(Rooms[character].inventory.begin() + i);
+                    }*/
             }
+
             else if (word[1] == "Back") {
             }
 
@@ -200,7 +211,7 @@ int main()
 
         }
 
-        //инвентарь ЗАМОРОЖЕНО
+        //инвентарь БАЗА ГОТОВА (доработка)
         if (ansver == "Check inventory") {
 
             if (Inv.empty()) {
